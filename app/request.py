@@ -1,13 +1,23 @@
-from app import app
+
 import urllib.request, json
 from .models import Article,Category,Source,Headlines
-# Getting api key
-api_key = app.config['NEWS_API_KEY']
 
-# Getting the base url
-base_url = app.config['NEWS_BASE_URL']
-source_url= app.config['NEWS_BASE_URL']
-cat_url=app.config['CAT_API_URL']
+# Getting api key
+api_key = None
+
+# getting source url
+source_url = None
+
+# Getting category url
+cat_url = None
+
+def configure_request(app):
+    global api_key, source_url, cat_url
+    api_key = app.config['NEWS_API_KEY']
+    source_url= app.config['NEWS_BASE_URL']
+    cat_url=app.config['CAT_API_URL']
+
+
 
 def get_source():
     '''
@@ -71,14 +81,15 @@ def process_articles_results(news):
     article_source_results = []
     for article in news:
         author = article.get('author')
+        title = article.get ('title')
         description = article.get('description')
         time = article.get('publishedAt')
         url = article.get('urlToImage')
         image = article.get('url')
-        title = article.get ('title')
+        
 
         if url:
-            article_objects = Article(author,description,time,image,url,title)
+            article_objects = Article(author,title,description,time,image,url)
             article_source_results.append(article_objects)
 
     return article_source_results
@@ -109,12 +120,12 @@ def get_category(cat_name):
     print(get_category_url)
     with urllib.request.urlopen(get_category_url) as url:
         get_category_data = url.read()
-        get_cartegory_response = json.loads(get_category_data)
+        get_category_response = json.loads(get_category_data)
 
-        get_cartegory_results = None
+        get_category_results = None
 
-        if get_cartegory_response['articles']:
-            get_cartegory_list = get_cartegory_response['articles']
-            get_cartegory_results = process_articles_results(get_cartegory_list)
+        if get_category_response['articles']:
+            get_category_list = get_category_response['articles']
+            get_category_results = process_articles_results(get_category_list)
 
-    return get_cartegory_results
+    return get_category_results
