@@ -6,6 +6,7 @@ api_key = app.config['NEWS_API_KEY']
 
 # Getting the base url
 base_url = app.config['NEWS_BASE_URL']
+source_url= app.config['NEWS_API_SOURCE_URL']
 
 def get_source():
     '''
