@@ -35,7 +35,7 @@ As a user I would like to:
 * In your terminal:
 
         $ git clone https://github.com/brenda-nthenya/news_app/
-        $ cd NewsPI
+        $ cd news_app
 
 ## Running the Application
 * Creating the virtual environment
