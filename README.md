@@ -3,7 +3,7 @@
 ## Description
 News on the Go is a web application that displays a list of various news sources. On choosing a news source, it will preview the top news articles of the day. Clicking a news article will redirect the user to read it fully from the news source. It achieves this by using the [News API](https://newsapi.org/).
 
-You can view the site at:[Heroku]()
+You can view the site at:[Heroku](https://news-on-the-go1.herokuapp.com/)
 
 ## User Stories
 These are the behaviours/features that the application implements for use by a user.
